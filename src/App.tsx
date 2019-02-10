@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./assets/logo.svg";
 import "./App.css";
+import Links from "./components/Links";
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <Links />
       </div>
     );
   }
