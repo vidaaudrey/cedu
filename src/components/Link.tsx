@@ -71,4 +71,7 @@ function Link({
   );
 }
 
+Link.defaultProps = {
+  updateStoreAfterVote: () => {}
+};
 export default Link;
