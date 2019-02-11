@@ -1,15 +1,13 @@
 import * as React from "react";
-import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { GetFeedQuery as QUERY } from "../queries";
 import { GetFeedQuery } from "../__generated__/GetFeedQuery";
-import { string } from "prop-types";
 
-interface Props {
+export interface Props {
   name: string;
 }
 
-const Links: React.SFC<Props> = function Links({ name = "Links" }) {
+function Links({ name }: Props) {
   return (
     <div>
       <h1>{name}</h1>
@@ -38,6 +36,8 @@ const Links: React.SFC<Props> = function Links({ name = "Links" }) {
       </Query>
     </div>
   );
-};
+}
+
+Links.defaultProps = { name: "links" };
 
 export default Links;

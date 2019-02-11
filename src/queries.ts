@@ -12,3 +12,14 @@ export const GetFeedQuery = gql`
     }
   }
 `;
+
+export const CreateLinkMutation = gql`
+  mutation CreateLinkMutation($description: String!, $url: String!) {
+    post(description: $description, url: $url) {
+      id
+      createdAt
+      url
+      description
+    }
+  }
+`;
