@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
-import Links from "./components/Links";
+import Links from "./components/LinkList";
 import CreateLink from "./components/CreateLink";
 import Header from "./components/Header";
 import Login from "./components/Login";

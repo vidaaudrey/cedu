@@ -46,6 +46,54 @@ export const FEED_SEARCH_QUERY = gql`
   }
 `;
 
+export const NEW_LINKS_SUBSCRIPTION = gql`
+  subscription NewLinksSubscription {
+    newLink {
+      id
+      url
+      description
+      createdAt
+      postedBy {
+        id
+        name
+      }
+      votes {
+        id
+        user {
+          id
+        }
+      }
+    }
+  }
+`;
+
+export const NEW_VOTES_SUBSCRIPTION = gql`
+  subscription NewVotesSubscription {
+    newVote {
+      id
+      link {
+        id
+        url
+        description
+        createdAt
+        postedBy {
+          id
+          name
+        }
+        votes {
+          id
+          user {
+            id
+          }
+        }
+      }
+      user {
+        id
+      }
+    }
+  }
+`;
+
 export const CREATE_LINK_MUTATION = gql`
   mutation CreateLinkMutation($description: String!, $url: String!) {
     post(description: $description, url: $url) {

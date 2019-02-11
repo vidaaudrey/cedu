@@ -18,7 +18,7 @@ export type UpdateStoreAfterVote = (
 
 export interface Props extends FeedQuery_feed_links {
   index: number;
-  updateStoreAfterVote: UpdateStoreAfterVote;
+  updateCacheAfterVote: UpdateStoreAfterVote;
 }
 
 function Link({
@@ -29,7 +29,7 @@ function Link({
   createdAt,
   url,
   index,
-  updateStoreAfterVote
+  updateCacheAfterVote
 }: Props) {
   const authToken = localStorage.getItem(AUTH_TOKEN);
   return (
@@ -42,7 +42,7 @@ function Link({
             variables={{ linkId: id }}
             update={(store, { data }) => {
               if (data && data.vote) {
-                updateStoreAfterVote(store, data.vote, id);
+                updateCacheAfterVote(store, data.vote, id);
               }
             }}
           >
@@ -72,6 +72,6 @@ function Link({
 }
 
 Link.defaultProps = {
-  updateStoreAfterVote: () => {}
+  updateCacheAfterVote: () => {}
 };
 export default Link;
