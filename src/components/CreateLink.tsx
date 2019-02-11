@@ -7,6 +7,7 @@ import {
 } from "../__generated__/CreateLinkMutation";
 import { History } from "history";
 import { FeedQuery } from "../__generated__/FeedQuery";
+import { LINKS_PER_PAGE } from "../constants";
 
 export interface Props {
   history: History;
@@ -41,20 +42,25 @@ function CreateLink({ history }: Props) {
         <Mutation<CreateLinkMutation, CreateLinkMutationVariables>
           mutation={CREATE_LINK_MUTATION}
           variables={{ description, url }}
+          onCompleted={() => history.push("/new/1")}
           update={(store, { data: postData }) => {
+            const first = LINKS_PER_PAGE;
+            const skip = 0;
+            const orderBy = "createdAt_DESC";
             const data: FeedQuery | null = store.readQuery({
-              query: FEED_QUERY
+              query: FEED_QUERY,
+              variables: { first, skip, orderBy }
             });
 
             if (data && postData && postData.post) {
               data.feed.links.unshift(postData.post);
               store.writeQuery({
                 query: FEED_QUERY,
-                data
+                data,
+                variables: { first, skip, orderBy }
               });
             }
           }}
-          onCompleted={() => history.push("/")}
         >
           {mutate => <button onClick={() => mutate()}>Submit</button>}
         </Mutation>

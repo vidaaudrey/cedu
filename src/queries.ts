@@ -1,24 +1,47 @@
 import gql from "graphql-tag";
 
+// export const FEED_QUERY = gql`
+//   query FeedQuery {
+//     feed {
+//       links {
+//         id
+//         createdAt
+//         url
+//         description
+//         votes {
+//           id
+//           user {
+//             id
+//           }
+//         }
+//         postedBy {
+//           name
+//           id
+//         }
+//       }
+//     }
+//   }
+// `;
 export const FEED_QUERY = gql`
-  query FeedQuery {
-    feed {
+  query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
+    feed(first: $first, skip: $skip, orderBy: $orderBy) {
       links {
         id
         createdAt
         url
         description
+        postedBy {
+          id
+          name
+        }
         votes {
           id
           user {
             id
           }
         }
-        postedBy {
-          name
-          id
-        }
       }
+      count
     }
   }
 `;

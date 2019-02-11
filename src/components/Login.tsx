@@ -18,8 +18,7 @@ interface MatchParams {
 
 interface Props extends RouteComponentProps<MatchParams> {}
 
-function Login({ history, match: { path }, ...rest }: Props) {
-  console.log(path, rest);
+function Login({ history, match: { path } }: Props) {
   const [isLogin, setIsLogin] = React.useState<boolean>(true);
   const [email, setemail] = React.useState<string>("");
   const [password, setpassword] = React.useState<string>("");
