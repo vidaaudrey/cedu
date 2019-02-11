@@ -58,9 +58,12 @@ export const post = {
   },
 
   post(parent, { url, description }, context: Context, info) {
+    const userId = getUserId(context);
+
     return context.prisma.createLink({
       url,
-      description
+      description,
+      postedBy: { connect: { id: userId } }
     });
   }
 };
